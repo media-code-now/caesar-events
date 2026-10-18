@@ -48,20 +48,26 @@ select.ce-in{appearance:none;background-image:linear-gradient(45deg,transparent 
 <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(100deg, rgba(4,23,26,.94) 0%, rgba(4,23,26,.82) 45%, rgba(4,23,26,.55) 100%)"></div>
 
 <header style="position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 24px; padding: 22px 32px">
+<!-- @include nav-left -->
 <nav class="ce-nav ce-side" aria-label="Primary" style="display: flex; gap: 28px; align-items: center; font-size: 15px; font-weight: 600; letter-spacing: .2px">
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="index.html">Locations</a>
-<a href="rentals.html">Rentals</a>
+<a href="index.html" data-nav="index">Home</a>
+<a href="about.html" data-nav="about">About</a>
+<a href="rentals.html" data-nav="rentals">Rentals</a>
+<a href="linens.html" data-nav="linens">Linens</a>
+<a href="index.html#locations" data-nav="locations">Locations</a>
 </nav>
+<!-- @end -->
 <a href="index.html" aria-label="Caesar Events USA — home" style="display: flex; justify-content: center">
 <img src="https://caesareventsusa.com/wp-content/uploads/2024/10/caesareventsusalogo-1.svg" alt="Caesar Events USA" style="height: 74px; width: auto; display: block">
 </a>
+<!-- @include nav-right -->
 <div class="ce-nav ce-side" style="display: flex; gap: 22px; align-items: center; justify-content: flex-end; font-size: 15px; font-weight: 600">
-<a href="gallery.html">Gallery</a>
-<a href="contact.html">Contact</a>
-<a class="ce-pill" href="#quote" aria-current="page" style="background: #A7906E; color: #04171A; padding: 12px 22px; border-radius: 999px; font-size: 13.5px; font-weight: 700; letter-spacing: .3px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">Get a Free Quote</a>
+<a href="gallery.html" data-nav="gallery">Gallery</a>
+<a href="blog.html" data-nav="blog">Blog</a>
+<a href="contact.html" data-nav="contact">Contact</a>
+<a class="ce-pill" href="quote.html" style="background: #A7906E; color: #04171A; padding: 12px 22px; border-radius: 999px; font-size: 13.5px; font-weight: 700; letter-spacing: .3px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">Get a Free Quote</a>
 </div>
+<!-- @end -->
 </header>
 
 <div class="ce-hero-in" style="position: relative; z-index: 2; max-width: 1280px; margin: 0 auto; padding: 32px 32px 64px">
@@ -341,6 +347,7 @@ select.ce-in{appearance:none;background-image:linear-gradient(45deg,transparent 
 </div>
 </section>
 
+<!-- @include footer -->
 <!-- FOOTER -->
 <footer class="ce-foot" style="background: #04171A; margin: 0 16px 16px; border-radius: 28px; padding: 64px 32px 32px; color: #c9d2d3">
 <div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 48px">
@@ -349,7 +356,7 @@ select.ce-in{appearance:none;background-image:linear-gradient(45deg,transparent 
 <p style="margin: 0; max-width: 460px; font-size: 15px">Premium party &amp; event rentals for weddings, galas, corporate events and private celebrations.</p>
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 32px; border-top: 1px solid rgba(255,255,255,.12); padding-top: 40px">
-<div style="display: flex; flex-direction: column; gap: 10px"><span style="color: #ffffff; font-weight: 700">Company</span><a href="about.html">About Us</a><a href="rentals.html">Rentals</a><a href="linens.html">Linens</a><a href="gallery.html">Gallery</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a><a href="#quote">Get a Quote</a></div>
+<div style="display: flex; flex-direction: column; gap: 10px"><span style="color: #ffffff; font-weight: 700">Company</span><a href="about.html">About Us</a><a href="rentals.html">Rentals</a><a href="linens.html">Linens</a><a href="gallery.html">Gallery</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a><a href="quote.html">Get a Quote</a></div>
 <div style="display: flex; flex-direction: column; gap: 10px"><span style="color: #ffffff; font-weight: 700">Locations</span><a href="https://miami.caesareventsusa.com/">Miami</a><a href="https://orlando.caesareventsusa.com/">Orlando</a><a href="https://houston.caesareventsusa.com/">Houston</a></div>
 <div style="display: flex; flex-direction: column; gap: 10px"><span style="color: #ffffff; font-weight: 700" aria-hidden="true">&#160;</span><a href="https://sandiego.caesareventsusa.com/">San Diego</a><a href="https://lasvegas.caesareventsusa.com/">Las Vegas</a><a href="https://losangeles.caesareventsusa.com/">Los Angeles</a></div>
 <div style="display: flex; flex-direction: column; gap: 10px"><span style="color: #ffffff; font-weight: 700">Connect</span><a href="https://www.facebook.com/caesareventsusa">Facebook</a><a href="https://www.instagram.com/caesar_event_rentals/">Instagram</a><a href="https://www.tiktok.com/@caesareventsusa">TikTok</a><a href="mailto:contact@caesareventsusa.com">contact@caesareventsusa.com</a></div>
@@ -360,6 +367,7 @@ select.ce-in{appearance:none;background-image:linear-gradient(45deg,transparent 
 </div>
 </div>
 </footer>
+<!-- @end -->
 
 </div>
 <script>

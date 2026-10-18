@@ -41,16 +41,23 @@ a{color:#04171A;text-decoration:none}a:hover{color:#3a4f52}
 
 <!-- HEADER BAR -->
 <header style="margin: 16px; border-radius: 28px; background: #04171A; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 24px; padding: 16px 32px">
+<!-- @include nav-left -->
 <nav class="ce-nav ce-side" aria-label="Primary" style="display: flex; gap: 28px; align-items: center; font-size: 15px; font-weight: 600; letter-spacing: .2px">
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="rentals.html" style="color: #E4D5BC">Rentals</a>
-<a href="gallery.html">Gallery</a>
+<a href="index.html" data-nav="index">Home</a>
+<a href="about.html" data-nav="about">About</a>
+<a href="rentals.html" data-nav="rentals">Rentals</a>
+<a href="linens.html" data-nav="linens" aria-current="page" style="color: #E4D5BC">Linens</a>
+<a href="index.html#locations" data-nav="locations">Locations</a>
 </nav>
+<!-- @end -->
 <a href="index.html" aria-label="Caesar Events USA — home" style="display: flex; justify-content: center">
 <img src="https://caesareventsusa.com/wp-content/uploads/2024/10/caesareventsusalogo-1.svg" alt="Caesar Events USA" style="height: 64px; width: auto; display: block">
 </a>
-<div class="ce-nav" style="display: flex; gap: 14px; align-items: center; justify-content: flex-end; font-size: 15px; font-weight: 600">
+<!-- @include nav-right -->
+<div class="ce-nav" style="display: flex; gap: 18px; align-items: center; justify-content: flex-end; font-size: 15px; font-weight: 600">
+<a class="ce-side" href="gallery.html" data-nav="gallery">Gallery</a>
+<a class="ce-side" href="blog.html" data-nav="blog">Blog</a>
+<a class="ce-side" href="contact.html" data-nav="contact">Contact</a>
 <a href="quote.html" class="ce-pill" aria-label="Quote list, 0 items" style="display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,.55); color: #ffffff; padding: 10px 16px 10px 14px; border-radius: 999px; min-height: 44px; box-sizing: border-box">
 <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 13H7z"></path><path d="M9 7a3 3 0 0 1 6 0"></path></svg>
 <span class="ce-side">Quote list</span>
@@ -58,6 +65,7 @@ a{color:#04171A;text-decoration:none}a:hover{color:#3a4f52}
 </a>
 <a class="ce-pill ce-side" href="quote.html" style="background: #A7906E; color: #04171A; padding: 12px 22px; border-radius: 999px; font-size: 13.5px; font-weight: 700; letter-spacing: .3px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">Get a Free Quote</a>
 </div>
+<!-- @end -->
 </header>
 
 <!-- TITLE -->
@@ -312,6 +320,7 @@ a{color:#04171A;text-decoration:none}a:hover{color:#3a4f52}
 </div>
 </section>
 
+<!-- @include footer -->
 <!-- FOOTER -->
 <footer class="ce-foot" style="background: #04171A; margin: 0 16px 16px; border-radius: 28px; padding: 64px 32px 32px; color: #c9d2d3">
 <div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 48px">
@@ -331,6 +340,7 @@ a{color:#04171A;text-decoration:none}a:hover{color:#3a4f52}
 </div>
 </div>
 </footer>
+<!-- @end -->
 
 </div>
 <script>

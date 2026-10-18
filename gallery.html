@@ -48,21 +48,26 @@ a{color:#04171A;text-decoration:none}a:hover{color:#3a4f52}
 <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(4,23,26,.74) 0%, rgba(4,23,26,.38) 40%, rgba(4,23,26,.6) 75%, rgba(4,23,26,.9) 100%)"></div>
 
 <header style="position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 24px; padding: 22px 32px">
+<!-- @include nav-left -->
 <nav class="ce-nav ce-side" aria-label="Primary" style="display: flex; gap: 28px; align-items: center; font-size: 15px; font-weight: 600; letter-spacing: .2px">
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="rentals.html">Rentals</a>
-<a href="linens.html">Linens</a>
+<a href="index.html" data-nav="index">Home</a>
+<a href="about.html" data-nav="about">About</a>
+<a href="rentals.html" data-nav="rentals">Rentals</a>
+<a href="linens.html" data-nav="linens">Linens</a>
+<a href="index.html#locations" data-nav="locations">Locations</a>
 </nav>
+<!-- @end -->
 <a href="index.html" aria-label="Caesar Events USA — home" style="display: flex; justify-content: center">
 <img src="https://caesareventsusa.com/wp-content/uploads/2024/10/caesareventsusalogo-1.svg" alt="Caesar Events USA" style="height: 74px; width: auto; display: block">
 </a>
+<!-- @include nav-right -->
 <div class="ce-nav ce-side" style="display: flex; gap: 22px; align-items: center; justify-content: flex-end; font-size: 15px; font-weight: 600">
-<a href="gallery.html" aria-current="page" style="color: #E4D5BC">Gallery</a>
-<a href="blog.html">Blog</a>
-<a href="contact.html">Contact</a>
+<a href="gallery.html" data-nav="gallery" aria-current="page" style="color: #E4D5BC">Gallery</a>
+<a href="blog.html" data-nav="blog">Blog</a>
+<a href="contact.html" data-nav="contact">Contact</a>
 <a class="ce-pill" href="quote.html" style="background: #A7906E; color: #04171A; padding: 12px 22px; border-radius: 999px; font-size: 13.5px; font-weight: 700; letter-spacing: .3px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">Get a Free Quote</a>
 </div>
+<!-- @end -->
 </header>
 
 <div style="position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 32px 24px 64px; gap: 20px">
@@ -187,6 +192,7 @@ a{color:#04171A;text-decoration:none}a:hover{color:#3a4f52}
 </div>
 </section>
 
+<!-- @include footer -->
 <!-- FOOTER -->
 <footer class="ce-foot" style="background: #04171A; margin: 0 16px 16px; border-radius: 28px; padding: 64px 32px 32px; color: #c9d2d3">
 <div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 48px">
@@ -206,6 +212,7 @@ a{color:#04171A;text-decoration:none}a:hover{color:#3a4f52}
 </div>
 </div>
 </footer>
+<!-- @end -->
 
 </div>
 
