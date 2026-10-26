@@ -84,6 +84,14 @@ function inject(html, name, body, legacy) {
   return html;
 }
 
+/** Like inject(), but on first run appends the block just before </head>. */
+function injectHead(html, name, body) {
+  const block = `<!-- @include ${name} -->\n${body}\n<!-- @end -->`;
+  const marker = new RegExp(`<!-- @include ${name} -->[\\s\\S]*?<!-- @end -->`);
+  if (marker.test(html)) return html.replace(marker, () => block);
+  return html.replace('</head>', () => `${block}\n</head>`);
+}
+
 // Legacy (pre-marker) block patterns, used once to migrate each page.
 const LEGACY = {
   left: /<nav class="ce-nav ce-side"[\s\S]*?<\/nav>/,
@@ -108,6 +116,7 @@ for (const [file, cfg] of Object.entries(PAGES)) {
   out = inject(out, 'nav-left', applyActive(partial('nav-left'), key), LEGACY.left);
   out = inject(out, 'nav-right', applyActive(partial(cfg.nav), key), LEGACY.right);
   out = inject(out, 'footer', partial('footer'), LEGACY.footer);
+  out = injectHead(out, 'sticky-nav', partial('sticky-nav'));
 
   if (out === before) {
     console.log(`  = ${file}`);

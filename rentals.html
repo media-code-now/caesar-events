@@ -21,6 +21,7 @@ a{color:#04171A;text-decoration:none}a:hover{color:#3a4f52}
 .ce-add{transition:all .2s;cursor:pointer}
 .ce-add:hover{background:#04171A !important;color:#ffffff !important}
 .ce-cat-btn{transition:background .2s,color .2s;cursor:pointer}
+.ce-cat-arrow{display:none}
 .ce-cat-btn:hover{background:#F5F0E7}
 .ce-in{font:inherit;font-size:15px;color:#04171A;background:#ffffff;border:1.5px solid #E3E6E6;border-radius:14px;padding:12px 16px;min-height:50px;box-sizing:border-box;width:100%;outline:none;transition:border-color .2s}
 .ce-in:focus{border-color:#A7906E}
@@ -33,9 +34,98 @@ a{color:#04171A;text-decoration:none}a:hover{color:#3a4f52}
 .ce-banner{margin:12px !important}
 .ce-tools{grid-template-columns:minmax(0,1fr) !important}
 .ce-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:12px !important}
+.ce-catalog{gap:16px !important}
+.ce-cats{display:contents !important}
+.ce-cats>h2{flex:0 0 100%;margin-bottom:-6px !important}
+.ce-cat-wrap{flex:0 0 100%;min-width:0;order:0;position:sticky;top:84px;z-index:5;margin:0 -16px;background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.ce-cat-arrow{display:flex;align-items:center;justify-content:center;position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:32px;height:32px;padding:0;border:1px solid #E3E6E6;border-radius:50%;background:#ffffff;color:#04171A;box-shadow:0 4px 14px rgba(4,23,26,.18);cursor:pointer}
+.ce-cat-arrow[hidden]{display:none}
+.ce-cat-prev{left:6px}.ce-cat-next{right:6px}
+.ce-cat-list{flex-direction:row !important;gap:8px !important;padding:8px 16px !important;border:0 !important;border-radius:0 !important;background:transparent !important;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x proximity;-webkit-mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 24px),transparent);mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 24px),transparent)}
+.ce-cat-list::-webkit-scrollbar{display:none}
+.ce-cat-btn{flex:none;scroll-snap-align:center;white-space:nowrap;min-height:40px !important;padding:8px 14px !important;gap:8px !important;border:1px solid #E3E6E6 !important;border-radius:999px !important;font-size:14px !important}
+.ce-cat-btn[aria-pressed="true"]{border-color:#04171A !important}
+.ce-cat-btn span:last-child{font-size:12px !important}
+.ce-catalog>div{order:1}
+.ce-aside-extra{order:2;flex:0 0 100%}
 }
 </style>
 <style>html{scroll-behavior:smooth}*,*::before,*::after{box-sizing:border-box}img{max-width:100%}</style>
+<!-- @include sticky-nav -->
+<!-- STICKY NAV + MOBILE MENU -->
+<style>
+html{scroll-padding-top:112px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+.ce-head{z-index:50 !important;transition:background-color .35s ease,box-shadow .35s ease,padding .35s cubic-bezier(.4,0,.2,1),-webkit-backdrop-filter .35s ease,backdrop-filter .35s ease}
+.ce-head img{transition:height .35s cubic-bezier(.4,0,.2,1)}
+:is(.ce-hero,.ce-banner){box-sizing:border-box;padding-top:118px}
+:is(.ce-hero,.ce-banner)>.ce-head{position:fixed !important;top:16px;left:16px;right:16px;box-sizing:border-box;border-radius:28px}
+.ce-head-solid{position:sticky !important;top:16px}
+.ce-head.is-stuck,.ce-head.is-open{background:rgba(4,23,26,.82) !important;-webkit-backdrop-filter:blur(14px) saturate(1.3);backdrop-filter:blur(14px) saturate(1.3);box-shadow:0 10px 40px rgba(0,0,0,.28)}
+.ce-head.is-stuck{padding-top:12px !important;padding-bottom:12px !important}
+.ce-head.is-stuck img{height:52px !important}
+.ce-burger{display:none;justify-self:start;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:1px solid rgba(255,255,255,.55);border-radius:999px;background:transparent;color:#fff;cursor:pointer;transition:background-color .27s ease}
+.ce-burger:hover{background:rgba(255,255,255,.14)}
+.ce-burger:focus-visible,.ce-menu a:focus-visible{outline:2px solid #F9BE17;outline-offset:2px}
+.ce-burger span{position:relative;display:block;width:18px;height:2px;border-radius:2px;background:currentColor;transition:background-color .2s ease}
+.ce-burger span::before,.ce-burger span::after{content:"";position:absolute;left:0;width:18px;height:2px;border-radius:2px;background:currentColor;transition:transform .3s cubic-bezier(.4,0,.2,1)}
+.ce-burger span::before{top:-6px}.ce-burger span::after{top:6px}
+.is-open .ce-burger span{background:transparent}
+.is-open .ce-burger span::before{transform:translateY(6px) rotate(45deg)}
+.is-open .ce-burger span::after{transform:translateY(-6px) rotate(-45deg)}
+.ce-menu{position:absolute;top:calc(100% + 8px);left:0;right:0;display:flex;flex-direction:column;gap:2px;padding:12px;border-radius:24px;background:rgba(4,23,26,.96);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 18px 50px rgba(0,0,0,.35);opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .25s ease,transform .3s cubic-bezier(.4,0,.2,1),visibility 0s linear .3s}
+.is-open .ce-menu{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.ce-menu a{display:flex;align-items:center;min-height:48px;padding:0 16px;border-radius:14px;color:#fff;font-size:16px;font-weight:600}
+.ce-menu a:hover{background:rgba(255,255,255,.08);color:#F9BE17}
+.ce-menu a[aria-current]{color:#E4D5BC}
+.ce-menu a.ce-menu-cta{justify-content:center;margin-top:8px;background:#A7906E;color:#04171A;font-size:14px;font-weight:700;letter-spacing:.3px;text-transform:uppercase}
+.ce-menu a.ce-menu-cta:hover{background:#A7906E;color:#04171A;filter:brightness(1.06)}
+@media (max-width:860px){
+html{scroll-padding-top:92px}
+.ce-burger{display:inline-flex}
+.ce-head{gap:12px !important;padding:14px 16px !important}
+.ce-head img{height:56px !important}
+.ce-head.is-stuck{padding-top:10px !important;padding-bottom:10px !important}
+.ce-head.is-stuck img{height:44px !important}
+:is(.ce-hero,.ce-banner){padding-top:84px}
+:is(.ce-hero,.ce-banner)>.ce-head{top:12px;left:12px;right:12px}
+.ce-head-solid{top:12px}
+.ce-head-solid{margin:12px !important}
+}
+@media (prefers-reduced-motion:reduce){.ce-head,.ce-head img,.ce-menu,.ce-burger span::before,.ce-burger span::after{transition:none}}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+var head=document.querySelector('.ce-head');if(!head)return;
+var ticking=false;
+function update(){head.classList.toggle('is-stuck',window.scrollY>24);ticking=false}
+window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(update)}},{passive:true});
+update();
+
+var btn=document.createElement('button');
+btn.type='button';btn.className='ce-burger';btn.setAttribute('aria-label','Menu');
+btn.setAttribute('aria-expanded','false');btn.setAttribute('aria-controls','ce-menu');
+btn.innerHTML='<span></span>';
+var menu=document.createElement('div');menu.className='ce-menu';menu.id='ce-menu';
+var seen={};
+head.querySelectorAll('a[data-nav]').forEach(function(a){
+var href=a.getAttribute('href');if(seen[href])return;seen[href]=1;
+var l=document.createElement('a');l.href=href;l.textContent=a.textContent.trim();
+if(a.hasAttribute('aria-current'))l.setAttribute('aria-current','page');
+menu.appendChild(l)});
+var cta=document.createElement('a');cta.href='quote.html';cta.className='ce-menu-cta';cta.textContent='Get a Free Quote';
+menu.appendChild(cta);
+head.insertBefore(btn,head.firstChild);head.appendChild(menu);
+
+function set(open){head.classList.toggle('is-open',open);btn.setAttribute('aria-expanded',open)}
+btn.addEventListener('click',function(){set(!head.classList.contains('is-open'))});
+menu.addEventListener('click',function(e){if(e.target.closest('a'))set(false)});
+document.addEventListener('click',function(e){if(!head.contains(e.target))set(false)});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&head.classList.contains('is-open')){set(false);btn.focus()}});
+window.matchMedia('(min-width:861px)').addEventListener('change',function(e){if(e.matches)set(false)});
+});
+</script>
+<!-- @end -->
 </head>
 <body id="top">
 <div style="font-family: 'Manrope', -apple-system, 'Segoe UI', sans-serif; color: #4E4D50; background: #ffffff; width: 100%; font-size: 16px; line-height: 1.72; letter-spacing: -0.03px">
@@ -44,7 +134,7 @@ a{color:#04171A;text-decoration:none}a:hover{color:#3a4f52}
 <section class="ce-banner" style="position: relative; margin: 16px; border-radius: 28px; overflow: hidden; background: #04171A">
 <img src="https://lasvegas.caesareventsusa.com/wp-content/uploads/2026/03/3-2.jpg" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
 <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(4,23,26,.8) 0%, rgba(4,23,26,.6) 50%, rgba(4,23,26,.9) 100%)"></div>
-<header style="position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 24px; padding: 22px 32px">
+<header class="ce-head" style="position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 24px; padding: 22px 32px">
 <!-- @include nav-left -->
 <nav class="ce-nav ce-side" aria-label="Primary" style="display: flex; gap: 28px; align-items: center; font-size: 15px; font-weight: 600; letter-spacing: .2px">
 <a href="index.html" data-nav="index">Home</a>
@@ -98,11 +188,13 @@ a{color:#04171A;text-decoration:none}a:hover{color:#3a4f52}
 
 <!-- CATALOG -->
 <section class="ce-sec" style="padding: 48px 32px 88px">
-<div style="max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 36px; align-items: flex-start">
+<div class="ce-catalog" style="max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 36px; align-items: flex-start">
 
-<aside aria-label="Collections" style="flex: 1 1 260px; max-width: 300px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<aside class="ce-cats" aria-label="Collections" style="flex: 1 1 260px; max-width: 300px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
 <h2 style="margin: 0; color: #04171A; font-size: 13px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase">Collections</h2>
-<div style="border: 1px solid #E3E6E6; border-radius: 22px; padding: 8px; display: flex; flex-direction: column; gap: 2px; background: #ffffff">
+<div class="ce-cat-wrap">
+<button type="button" class="ce-cat-arrow ce-cat-prev" aria-label="Scroll collections left" hidden><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"></path></svg></button>
+<div class="ce-cat-list" style="border: 1px solid #E3E6E6; border-radius: 22px; padding: 8px; display: flex; flex-direction: column; gap: 2px; background: #ffffff">
 
 <button type="button" class="ce-cat-btn" data-cat-btn="all" aria-pressed="true" style="font: inherit; border: 0; text-align: left; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 11px 14px; border-radius: 14px; min-height: 44px; background: #04171A; color: #ffffff; font-size: 15px; font-weight: 700">
 <span style="display: flex; align-items: center; gap: 10px">All Collections</span>
@@ -175,11 +267,13 @@ a{color:#04171A;text-decoration:none}a:hover{color:#3a4f52}
 </button>
 
 </div>
-<a href="linens.html" class="ce-pill" style="display: flex; align-items: center; gap: 14px; border: 1px solid #E3E6E6; border-radius: 22px; padding: 12px; color: #04171A">
+<button type="button" class="ce-cat-arrow ce-cat-next" aria-label="Scroll collections right"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></button>
+</div>
+<a href="linens.html" class="ce-pill ce-aside-extra" style="display: flex; align-items: center; gap: 14px; border: 1px solid #E3E6E6; border-radius: 22px; padding: 12px; color: #04171A">
 <img src="https://images.booqablecdn.com/w500/h500/uploads/9687b0d86758f5f83be55ded12902a8b/photo/photo/3eecc943-c9ef-4fd6-ac1b-3373cb3b444e/upload.png" alt="" aria-hidden="true" style="width: 56px; height: 56px; border-radius: 14px; object-fit: cover; flex: none">
 <span style="display: flex; flex-direction: column; line-height: 1.3"><span style="font-size: 12px; font-weight: 700; color: #6E5B3F; letter-spacing: 1px; text-transform: uppercase">Featured</span><span style="font-weight: 700">Shop Linens &amp; Napkins →</span></span>
 </a>
-<div style="background: #04171A; border-radius: 22px; padding: 24px; display: flex; flex-direction: column; gap: 10px; color: #c9d2d3">
+<div class="ce-aside-extra" style="background: #04171A; border-radius: 22px; padding: 24px; display: flex; flex-direction: column; gap: 10px; color: #c9d2d3">
 <span style="color: #ffffff; font-weight: 700; font-size: 18px; line-height: 1.3">Need help choosing?</span>
 <span style="font-size: 14px; line-height: 1.55">Tell us about your event and our team will build the list for you.</span>
 <a class="ce-pill" href="quote.html" style="background: #A7906E; color: #04171A; padding: 12px 18px; border-radius: 999px; font-weight: 700; font-size: 14px; text-align: center; margin-top: 4px">Get a free quote</a>
@@ -425,9 +519,15 @@ a{color:#04171A;text-decoration:none}a:hover{color:#3a4f52}
       active=b.dataset.catBtn;
       document.querySelectorAll('[data-cat-btn]').forEach(function(x){var on=x===b;x.setAttribute('aria-pressed',on);x.style.background=on?'#04171A':'transparent';x.style.color=on?'#ffffff':'#04171A';x.style.fontWeight=on?'700':'600';});
       title.textContent=b.querySelector('span').textContent; apply();
+      if(b.scrollIntoView) b.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'});
     });
   });
   search.addEventListener('input',apply);
+  var list=document.querySelector('.ce-cat-list'), prev=document.querySelector('.ce-cat-prev'), next=document.querySelector('.ce-cat-next');
+  function arrows(){prev.hidden=list.scrollLeft<4; next.hidden=list.scrollLeft+list.clientWidth>=list.scrollWidth-4;}
+  list.addEventListener('scroll',arrows,{passive:true}); window.addEventListener('resize',arrows); arrows();
+  prev.addEventListener('click',function(){list.scrollBy({left:-list.clientWidth*.6,behavior:'smooth'});});
+  next.addEventListener('click',function(){list.scrollBy({left:list.clientWidth*.6,behavior:'smooth'});});
   document.querySelectorAll('[data-add]').forEach(function(b){b.addEventListener('click',function(){n++;count.textContent=n;});});
 })();
 document.querySelectorAll('button[data-dir]').forEach(function(b){
