@@ -18,6 +18,12 @@ a{color:#04171A;text-decoration:none}a:hover{color:#3a4f52}
 .ce-pill:hover{filter:brightness(1.06);transform:translateY(-1px)}
 .ce-ghost:hover{background:rgba(255,255,255,.14)}
 .ce-city:hover{background:#04171A;color:#ffffff}
+.ce-loc .ce-loc-blob,.ce-loc .ce-loc-photo{transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.ce-loc:hover .ce-loc-blob{transform:rotate(18deg) scale(1.05) !important}
+.ce-loc:hover .ce-loc-photo{transform:scale(1.04)}
+.ce-loc:hover{color:#ffffff}
+.ce-loc:focus-visible{outline:2px solid #04171A;outline-offset:4px;border-radius:24px}
+@media (prefers-reduced-motion:reduce){.ce-loc .ce-loc-blob,.ce-loc .ce-loc-photo{transition:none}}
 .ce-row{scrollbar-width:none}.ce-row::-webkit-scrollbar{display:none}
 .ce-ring{transition:transform .27s cubic-bezier(0,0,.58,1),box-shadow .27s cubic-bezier(0,0,.58,1)}
 .ce-cat:hover .ce-ring{transform:translateY(-6px);box-shadow:0 18px 40px -18px rgba(4,23,26,.35)}
@@ -351,53 +357,71 @@ window.matchMedia('(min-width:861px)').addEventListener('change',function(e){if(
 <h2 class="ce-h2" style="margin: 0; color: #04171A; font-size: 44px; line-height: 1.15; font-weight: 500; letter-spacing: -1.4px">Local teams, coast to coast</h2>
 <p style="margin: 0; font-size: 17px; max-width: 560px">Choose your city to see the local catalog, packages and team.</p>
 </div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px">
+<div class="ce-locs" style="overflow: clip; padding: 8px; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 20px 12px">
 
-<a class="ce-city ce-card" href="https://miami.caesareventsusa.com/" style="border: 1px solid #E3E6E6; border-radius: 28px; padding: 24px 22px; display: flex; flex-direction: column; gap: 28px; color: #04171A; background: #ffffff">
-<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
-<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
-<span style="font-size: 19px; font-weight: 700">Miami</span>
-<span aria-hidden="true" style="font-size: 18px">→</span>
+<a class="ce-loc" href="https://miami.caesareventsusa.com/" aria-label="Miami — visit the local site" style="display: block; color: #ffffff">
+<div style="position: relative; aspect-ratio: 1; max-width: 240px; margin: 0 auto">
+<svg class="ce-loc-blob" aria-hidden="true" viewBox="0 0 200 200" style="position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-8deg)"><path d="M45 30C70 8 120 6 155 24c30 16 44 52 34 86-10 36-48 62-86 58C60 164 20 140 12 100 8 72 22 46 45 30z" fill="#E8B93A" fill-opacity=".6" transform="rotate(40 100 100)"></path><path d="M60 22c34-14 84-4 108 28 22 30 14 74-12 102-26 28-74 36-106 12C18 138 8 96 22 62c8-18 20-30 38-40z" fill="#E8B93A" fill-opacity=".8"></path><path transform="translate(-6 8)" d="M30 70C34 36 70 14 108 20c40 6 76 30 80 68 4 38-24 78-66 86-40 8-84-10-94-46-4-14-2-40 2-58z" fill="#2F7D5B" fill-opacity=".82"></path></svg>
+<div class="ce-loc-photo" style="position: absolute; inset: 11%; border-radius: 50%; overflow: hidden; background: #04171A; display: flex; align-items: center; justify-content: center">
+<img src="images/cities/miami.jpg" alt="" aria-hidden="true" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+<span aria-hidden="true" style="position: absolute; inset: 0; background: rgba(4,23,26,.28)"></span>
+<span style="position: relative; padding: 0 10px; text-align: center; font-size: 24px; font-weight: 800; line-height: 1.1; letter-spacing: -.3px; text-shadow: 0 2px 14px rgba(0,0,0,.55)">Miami</span>
+</div>
 </div>
 </a>
 
-<a class="ce-city ce-card" href="https://orlando.caesareventsusa.com/" style="border: 1px solid #E3E6E6; border-radius: 28px; padding: 24px 22px; display: flex; flex-direction: column; gap: 28px; color: #04171A; background: #ffffff">
-<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
-<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
-<span style="font-size: 19px; font-weight: 700">Orlando</span>
-<span aria-hidden="true" style="font-size: 18px">→</span>
+<a class="ce-loc" href="https://orlando.caesareventsusa.com/" aria-label="Orlando — visit the local site" style="display: block; color: #ffffff">
+<div style="position: relative; aspect-ratio: 1; max-width: 240px; margin: 0 auto">
+<svg class="ce-loc-blob" aria-hidden="true" viewBox="0 0 200 200" style="position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(14deg)"><path d="M45 30C70 8 120 6 155 24c30 16 44 52 34 86-10 36-48 62-86 58C60 164 20 140 12 100 8 72 22 46 45 30z" fill="#E8B93A" fill-opacity=".6" transform="rotate(40 100 100)"></path><path d="M60 22c34-14 84-4 108 28 22 30 14 74-12 102-26 28-74 36-106 12C18 138 8 96 22 62c8-18 20-30 38-40z" fill="#E8B93A" fill-opacity=".8"></path><path transform="translate(-6 8)" d="M30 70C34 36 70 14 108 20c40 6 76 30 80 68 4 38-24 78-66 86-40 8-84-10-94-46-4-14-2-40 2-58z" fill="#2F7D5B" fill-opacity=".82"></path></svg>
+<div class="ce-loc-photo" style="position: absolute; inset: 11%; border-radius: 50%; overflow: hidden; background: #04171A; display: flex; align-items: center; justify-content: center">
+<img src="images/cities/orlando.jpg" alt="" aria-hidden="true" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+<span aria-hidden="true" style="position: absolute; inset: 0; background: rgba(4,23,26,.28)"></span>
+<span style="position: relative; padding: 0 10px; text-align: center; font-size: 24px; font-weight: 800; line-height: 1.1; letter-spacing: -.3px; text-shadow: 0 2px 14px rgba(0,0,0,.55)">Orlando</span>
+</div>
 </div>
 </a>
 
-<a class="ce-city ce-card" href="https://houston.caesareventsusa.com/" style="border: 1px solid #E3E6E6; border-radius: 28px; padding: 24px 22px; display: flex; flex-direction: column; gap: 28px; color: #04171A; background: #ffffff">
-<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
-<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
-<span style="font-size: 19px; font-weight: 700">Houston</span>
-<span aria-hidden="true" style="font-size: 18px">→</span>
+<a class="ce-loc" href="https://houston.caesareventsusa.com/" aria-label="Houston — visit the local site" style="display: block; color: #ffffff">
+<div style="position: relative; aspect-ratio: 1; max-width: 240px; margin: 0 auto">
+<svg class="ce-loc-blob" aria-hidden="true" viewBox="0 0 200 200" style="position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(32deg)"><path d="M45 30C70 8 120 6 155 24c30 16 44 52 34 86-10 36-48 62-86 58C60 164 20 140 12 100 8 72 22 46 45 30z" fill="#E8B93A" fill-opacity=".6" transform="rotate(40 100 100)"></path><path d="M60 22c34-14 84-4 108 28 22 30 14 74-12 102-26 28-74 36-106 12C18 138 8 96 22 62c8-18 20-30 38-40z" fill="#E8B93A" fill-opacity=".8"></path><path transform="translate(-6 8)" d="M30 70C34 36 70 14 108 20c40 6 76 30 80 68 4 38-24 78-66 86-40 8-84-10-94-46-4-14-2-40 2-58z" fill="#2F7D5B" fill-opacity=".82"></path></svg>
+<div class="ce-loc-photo" style="position: absolute; inset: 11%; border-radius: 50%; overflow: hidden; background: #04171A; display: flex; align-items: center; justify-content: center">
+<img src="images/cities/houston.jpg" alt="" aria-hidden="true" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+<span aria-hidden="true" style="position: absolute; inset: 0; background: rgba(4,23,26,.28)"></span>
+<span style="position: relative; padding: 0 10px; text-align: center; font-size: 24px; font-weight: 800; line-height: 1.1; letter-spacing: -.3px; text-shadow: 0 2px 14px rgba(0,0,0,.55)">Houston</span>
+</div>
 </div>
 </a>
 
-<a class="ce-city ce-card" href="https://sandiego.caesareventsusa.com/" style="border: 1px solid #E3E6E6; border-radius: 28px; padding: 24px 22px; display: flex; flex-direction: column; gap: 28px; color: #04171A; background: #ffffff">
-<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
-<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
-<span style="font-size: 19px; font-weight: 700">San Diego</span>
-<span aria-hidden="true" style="font-size: 18px">→</span>
+<a class="ce-loc" href="https://sandiego.caesareventsusa.com/" aria-label="San Diego — visit the local site" style="display: block; color: #ffffff">
+<div style="position: relative; aspect-ratio: 1; max-width: 240px; margin: 0 auto">
+<svg class="ce-loc-blob" aria-hidden="true" viewBox="0 0 200 200" style="position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-20deg)"><path d="M45 30C70 8 120 6 155 24c30 16 44 52 34 86-10 36-48 62-86 58C60 164 20 140 12 100 8 72 22 46 45 30z" fill="#E8B93A" fill-opacity=".6" transform="rotate(40 100 100)"></path><path d="M60 22c34-14 84-4 108 28 22 30 14 74-12 102-26 28-74 36-106 12C18 138 8 96 22 62c8-18 20-30 38-40z" fill="#E8B93A" fill-opacity=".8"></path><path transform="translate(-6 8)" d="M30 70C34 36 70 14 108 20c40 6 76 30 80 68 4 38-24 78-66 86-40 8-84-10-94-46-4-14-2-40 2-58z" fill="#2F7D5B" fill-opacity=".82"></path></svg>
+<div class="ce-loc-photo" style="position: absolute; inset: 11%; border-radius: 50%; overflow: hidden; background: #04171A; display: flex; align-items: center; justify-content: center">
+<img src="images/cities/sandiego.jpg" alt="" aria-hidden="true" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+<span aria-hidden="true" style="position: absolute; inset: 0; background: rgba(4,23,26,.28)"></span>
+<span style="position: relative; padding: 0 10px; text-align: center; font-size: 24px; font-weight: 800; line-height: 1.1; letter-spacing: -.3px; text-shadow: 0 2px 14px rgba(0,0,0,.55)">San Diego</span>
+</div>
 </div>
 </a>
 
-<a class="ce-city ce-card" href="https://lasvegas.caesareventsusa.com/" style="border: 1px solid #E3E6E6; border-radius: 28px; padding: 24px 22px; display: flex; flex-direction: column; gap: 28px; color: #04171A; background: #ffffff">
-<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
-<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
-<span style="font-size: 19px; font-weight: 700">Las Vegas</span>
-<span aria-hidden="true" style="font-size: 18px">→</span>
+<a class="ce-loc" href="https://lasvegas.caesareventsusa.com/" aria-label="Las Vegas — visit the local site" style="display: block; color: #ffffff">
+<div style="position: relative; aspect-ratio: 1; max-width: 240px; margin: 0 auto">
+<svg class="ce-loc-blob" aria-hidden="true" viewBox="0 0 200 200" style="position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(6deg)"><path d="M45 30C70 8 120 6 155 24c30 16 44 52 34 86-10 36-48 62-86 58C60 164 20 140 12 100 8 72 22 46 45 30z" fill="#E8B93A" fill-opacity=".6" transform="rotate(40 100 100)"></path><path d="M60 22c34-14 84-4 108 28 22 30 14 74-12 102-26 28-74 36-106 12C18 138 8 96 22 62c8-18 20-30 38-40z" fill="#E8B93A" fill-opacity=".8"></path><path transform="translate(-6 8)" d="M30 70C34 36 70 14 108 20c40 6 76 30 80 68 4 38-24 78-66 86-40 8-84-10-94-46-4-14-2-40 2-58z" fill="#2F7D5B" fill-opacity=".82"></path></svg>
+<div class="ce-loc-photo" style="position: absolute; inset: 11%; border-radius: 50%; overflow: hidden; background: #04171A; display: flex; align-items: center; justify-content: center">
+<img src="images/cities/lasvegas.jpg" alt="" aria-hidden="true" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+<span aria-hidden="true" style="position: absolute; inset: 0; background: rgba(4,23,26,.28)"></span>
+<span style="position: relative; padding: 0 10px; text-align: center; font-size: 24px; font-weight: 800; line-height: 1.1; letter-spacing: -.3px; text-shadow: 0 2px 14px rgba(0,0,0,.55)">Las Vegas</span>
+</div>
 </div>
 </a>
 
-<a class="ce-city ce-card" href="https://losangeles.caesareventsusa.com/" style="border: 1px solid #E3E6E6; border-radius: 28px; padding: 24px 22px; display: flex; flex-direction: column; gap: 28px; color: #04171A; background: #ffffff">
-<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
-<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
-<span style="font-size: 19px; font-weight: 700">Los Angeles</span>
-<span aria-hidden="true" style="font-size: 18px">→</span>
+<a class="ce-loc" href="https://losangeles.caesareventsusa.com/" aria-label="Los Angeles — visit the local site" style="display: block; color: #ffffff">
+<div style="position: relative; aspect-ratio: 1; max-width: 240px; margin: 0 auto">
+<svg class="ce-loc-blob" aria-hidden="true" viewBox="0 0 200 200" style="position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(24deg)"><path d="M45 30C70 8 120 6 155 24c30 16 44 52 34 86-10 36-48 62-86 58C60 164 20 140 12 100 8 72 22 46 45 30z" fill="#E8B93A" fill-opacity=".6" transform="rotate(40 100 100)"></path><path d="M60 22c34-14 84-4 108 28 22 30 14 74-12 102-26 28-74 36-106 12C18 138 8 96 22 62c8-18 20-30 38-40z" fill="#E8B93A" fill-opacity=".8"></path><path transform="translate(-6 8)" d="M30 70C34 36 70 14 108 20c40 6 76 30 80 68 4 38-24 78-66 86-40 8-84-10-94-46-4-14-2-40 2-58z" fill="#2F7D5B" fill-opacity=".82"></path></svg>
+<div class="ce-loc-photo" style="position: absolute; inset: 11%; border-radius: 50%; overflow: hidden; background: #04171A; display: flex; align-items: center; justify-content: center">
+<img src="images/cities/losangeles.jpg" alt="" aria-hidden="true" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+<span aria-hidden="true" style="position: absolute; inset: 0; background: rgba(4,23,26,.28)"></span>
+<span style="position: relative; padding: 0 10px; text-align: center; font-size: 24px; font-weight: 800; line-height: 1.1; letter-spacing: -.3px; text-shadow: 0 2px 14px rgba(0,0,0,.55)">Los Angeles</span>
+</div>
 </div>
 </a>
 
