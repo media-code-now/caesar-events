@@ -251,6 +251,11 @@ window.matchMedia('(min-width:861px)').addEventListener('change',function(e){if(
 <span style="font-size: 13px; font-weight: 700; opacity: .75">51</span>
 </button>
 
+<button type="button" class="ce-cat-btn" data-cat-btn="modular-bars" aria-pressed="false" style="font: inherit; border: 0; text-align: left; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 11px 14px; border-radius: 14px; min-height: 44px; background: transparent; color: #04171A; font-size: 15px; font-weight: 600">
+<span style="display: flex; align-items: center; gap: 10px">Modular Bars</span>
+<span style="font-size: 13px; font-weight: 700; opacity: .75">New</span>
+</button>
+
 <button type="button" class="ce-cat-btn" data-cat-btn="decor" aria-pressed="false" style="font: inherit; border: 0; text-align: left; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 11px 14px; border-radius: 14px; min-height: 44px; background: transparent; color: #04171A; font-size: 15px; font-weight: 600">
 <span style="display: flex; align-items: center; gap: 10px">Décor &amp; Enhancements</span>
 <span style="font-size: 13px; font-weight: 700; opacity: .75">30</span>
@@ -512,7 +517,10 @@ window.matchMedia('(min-width:861px)').addEventListener('change',function(e){if(
   function apply(){
     var q=(search.value||'').toLowerCase().trim(), k=0;
     cards.forEach(function(c){var ok=(active==='all'||c.dataset.cat===active)&&(!q||c.dataset.name.toLowerCase().indexOf(q)>-1);c.style.display=ok?'':'none';if(ok)k++;});
-    shown.textContent=k; empty.textContent=k?'':'No items match — try another collection or search term.';
+    shown.textContent=k;
+    if(k) empty.textContent='';
+    else if(active==='modular-bars'&&!q) empty.innerHTML='Modular bars are quoted per event. <a href="quote.html" style="font-weight:700;border-bottom:2px solid #A7906E">Request a free quote</a> or <a href="index.html#custom" style="font-weight:700;border-bottom:2px solid #A7906E">upload your inspiration</a>.';
+    else empty.textContent='No items match — try another collection or search term.';
   }
   document.querySelectorAll('[data-cat-btn]').forEach(function(b){
     b.addEventListener('click',function(){
@@ -523,6 +531,7 @@ window.matchMedia('(min-width:861px)').addEventListener('change',function(e){if(
     });
   });
   search.addEventListener('input',apply);
+  var hb=document.querySelector('[data-cat-btn="'+decodeURIComponent(location.hash.slice(1))+'"]'); if(hb) hb.click();
   var list=document.querySelector('.ce-cat-list'), prev=document.querySelector('.ce-cat-prev'), next=document.querySelector('.ce-cat-next');
   function arrows(){prev.hidden=list.scrollLeft<4; next.hidden=list.scrollLeft+list.clientWidth>=list.scrollWidth-4;}
   list.addEventListener('scroll',arrows,{passive:true}); window.addEventListener('resize',arrows); arrows();

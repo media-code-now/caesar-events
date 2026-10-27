@@ -38,6 +38,33 @@ select.ce-in{appearance:none;background-image:linear-gradient(45deg,transparent 
 }
 </style>
 <style>html{scroll-behavior:smooth}*,*::before,*::after{box-sizing:border-box}img{max-width:100%}</style>
+<style>
+.ce-cb{border:1.5px solid #E3E6E6;border-radius:20px;background:#FBF8F3;transition:border-color .25s,box-shadow .25s,background .25s}
+.ce-cb.is-on{border-color:#A7906E;background:#ffffff;box-shadow:0 14px 40px -22px rgba(4,23,26,.35)}
+.ce-cb-head{position:relative;display:flex;align-items:center;gap:14px;padding:16px 18px;cursor:pointer}
+.ce-cb-head input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.ce-cb-ico{flex:none;width:42px;height:42px;border-radius:50%;background:#04171A;color:#E4D5BC;display:inline-flex;align-items:center;justify-content:center}
+.ce-cb-txt{line-height:1.4;display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
+.ce-cb-txt b{color:#04171A;font-size:15px}.ce-cb-txt span{font-size:13px;line-height:1.4}
+.ce-sw{flex:none;position:relative;width:46px;height:26px;border-radius:999px;background:#D5D8D8;transition:background .25s}
+.ce-sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.3);transition:transform .3s cubic-bezier(.4,0,.2,1)}
+.ce-cb.is-on .ce-sw{background:#A7906E}.ce-cb.is-on .ce-sw::after{transform:translateX(20px)}
+.ce-cb-head:has(input:focus-visible){outline:2px solid #A7906E;outline-offset:2px;border-radius:20px}
+.ce-cb-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s cubic-bezier(.4,0,.2,1)}
+.ce-cb.is-on .ce-cb-body{grid-template-rows:1fr}
+.ce-cb-body>div{overflow:hidden;min-height:0}
+.ce-cb-in{display:flex;flex-direction:column;gap:14px;padding:4px 18px 20px;opacity:0;transition:opacity .3s ease}
+.ce-cb.is-on .ce-cb-in{opacity:1;transition-delay:.1s}
+.ce-drop{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;padding:24px 18px;border:2px dashed #C9BBA2;border-radius:18px;background:#ffffff;text-align:center;cursor:pointer;transition:border-color .2s,background .2s}
+.ce-drop:hover,.ce-drop.is-over{border-color:#A7906E;background:#FBF8F3}
+.ce-drop:focus-within{outline:2px solid #A7906E;outline-offset:2px}
+.ce-drop input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+.ce-thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:10px;margin:0;padding:0;list-style:none}
+.ce-thumb{position:relative;aspect-ratio:1;border-radius:14px;overflow:hidden;background:#E3E6E6}
+.ce-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.ce-thumb button{position:absolute;top:6px;right:6px;width:28px;height:28px;padding:0;border:0;border-radius:50%;background:rgba(4,23,26,.82);color:#fff;font-size:16px;line-height:1;cursor:pointer}
+@media (prefers-reduced-motion:reduce){.ce-cb-body,.ce-cb-in,.ce-sw,.ce-sw::after{transition:none}}
+</style>
 <!-- @include sticky-nav -->
 <!-- STICKY NAV + MOBILE MENU -->
 <style>
@@ -177,7 +204,7 @@ window.matchMedia('(min-width:861px)').addEventListener('change',function(e){if(
 </div>
 </div>
 
-<form id="quote" method="post" action="" data-quote-form aria-label="Request a free quote" style="background: #ffffff; border-radius: 28px; padding: 36px 34px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 30px 80px -30px rgba(0,0,0,.55)">
+<form id="quote" method="post" action="" enctype="multipart/form-data" data-quote-form aria-label="Request a free quote" style="background: #ffffff; border-radius: 28px; padding: 36px 34px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 30px 80px -30px rgba(0,0,0,.55)">
 <div style="display: flex; flex-direction: column; gap: 4px; margin-bottom: 4px">
 <h2 style="margin: 0; color: #04171A; font-size: 28px; font-weight: 600; letter-spacing: -.6px; line-height: 1.2">Get a free quote in minutes</h2>
 <p style="margin: 0; font-size: 15px">From a wedding to a trade show to a private party — we have the rentals to match.</p>
@@ -201,6 +228,30 @@ window.matchMedia('(min-width:861px)').addEventListener('change',function(e){if(
 </div>
 <div class="ce-field"><label for="q-date">Event date</label><input class="ce-in" id="q-date" name="event_date" type="date"></div>
 <div class="ce-field"><label for="q-msg">Message</label><textarea class="ce-in" id="q-msg" name="message" rows="4" placeholder="Venue, guest count, the rentals or look you have in mind…" style="resize: vertical; min-height: 110px"></textarea></div>
+<div class="ce-cb" id="custom-build" data-cb>
+<label class="ce-cb-head">
+<input type="checkbox" name="custom_build" value="yes" aria-controls="cb-panel" data-cb-toggle>
+<span class="ce-cb-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"></path></svg></span>
+<span class="ce-cb-txt"><b>Add a custom build</b><span>Bars, backdrops, signage or furniture made to your design.</span></span>
+<span class="ce-sw" aria-hidden="true"></span>
+</label>
+<div class="ce-cb-body" id="cb-panel"><div data-cb-inner inert>
+<div class="ce-cb-in">
+<div class="ce-field">
+<label for="cb-files">Inspiration images</label>
+<div class="ce-drop" data-drop>
+<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A7906E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4"></path><path d="M7 9l5-5 5 5"></path><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"></path></svg>
+<span style="color: #04171A; font-weight: 700; font-size: 15px">Drag &amp; drop images, or tap to browse</span>
+<span style="font-size: 13px">JPG, PNG or WebP &middot; up to 5 images, 10&nbsp;MB each</span>
+<input id="cb-files" name="inspiration" type="file" accept="image/*" multiple aria-describedby="cb-msg">
+</div>
+<ul class="ce-thumbs" data-thumbs aria-label="Selected images"></ul>
+<p id="cb-msg" role="alert" data-msg style="margin: 0; font-size: 13.5px; font-weight: 600; color: #b3261e"></p>
+</div>
+<div class="ce-field"><label for="cb-desc">Describe your build</label><textarea class="ce-in" id="cb-desc" name="custom_details" rows="3" placeholder="What it is, rough dimensions, colours, materials…" style="resize: vertical; min-height: 90px"></textarea></div>
+</div>
+</div></div>
+</div>
 <button class="ce-pill" type="submit" style="font: inherit; border: 0; background: #A7906E; color: #04171A; padding: 17px 26px; border-radius: 999px; font-weight: 800; font-size: 15px; letter-spacing: .4px; text-transform: uppercase; min-height: 54px; margin-top: 4px">Get my free quote</button>
 <p role="status" style="margin: 0; text-align: center; font-size: 14px; font-weight: 600; color: #2f6b3a"></p>
 </form>
@@ -453,6 +504,46 @@ document.querySelectorAll('button[data-dir]').forEach(function(b){
     if(row) row.scrollBy({left:Number(b.dataset.dir)*Math.max(248,row.clientWidth*0.75),behavior:'smooth'});
   });
 });
+</script>
+<script>
+(function(){
+  var cb=document.querySelector('[data-cb]'); if(!cb) return;
+  var form=cb.closest('form'), toggle=cb.querySelector('[data-cb-toggle]'), inner=cb.querySelector('[data-cb-inner]'),
+      input=cb.querySelector('input[type=file]'), drop=cb.querySelector('[data-drop]'),
+      list=cb.querySelector('[data-thumbs]'), msg=cb.querySelector('[data-msg]'),
+      MAX=5, MAX_BYTES=10*1024*1024, files=[];
+  function setOpen(on){
+    cb.classList.toggle('is-on',on); toggle.checked=on;
+    if(on) inner.removeAttribute('inert'); else inner.setAttribute('inert','');
+  }
+  toggle.addEventListener('change',function(){setOpen(toggle.checked)});
+  if(location.hash==='#custom-build'){setOpen(true); cb.scrollIntoView({block:'center'});}
+  function sync(){
+    var dt=new DataTransfer(); files.forEach(function(f){dt.items.add(f.file)}); input.files=dt.files;
+    list.innerHTML='';
+    files.forEach(function(f,i){
+      var li=document.createElement('li'); li.className='ce-thumb';
+      var img=document.createElement('img'); img.src=f.url; img.alt=f.file.name;
+      var b=document.createElement('button'); b.type='button'; b.setAttribute('aria-label','Remove '+f.file.name); b.textContent='\u00d7';
+      b.addEventListener('click',function(){URL.revokeObjectURL(f.url); files.splice(i,1); msg.textContent=''; sync();});
+      li.appendChild(img); li.appendChild(b); list.appendChild(li);
+    });
+  }
+  function add(incoming){
+    var err='';
+    [].slice.call(incoming).forEach(function(file){
+      if(!/^image\//.test(file.type)){err='Only image files can be uploaded.';return;}
+      if(file.size>MAX_BYTES){err=file.name+' is larger than 10 MB.';return;}
+      if(files.length>=MAX){err='You can upload up to '+MAX+' images.';return;}
+      files.push({file:file,url:URL.createObjectURL(file)});
+    });
+    msg.textContent=err; sync();
+  }
+  input.addEventListener('change',function(){var picked=[].slice.call(input.files); input.value=''; add(picked);});
+  ['dragenter','dragover'].forEach(function(t){drop.addEventListener(t,function(e){e.preventDefault(); drop.classList.add('is-over');});});
+  ['dragleave','drop'].forEach(function(t){drop.addEventListener(t,function(e){e.preventDefault(); drop.classList.remove('is-over');});});
+  drop.addEventListener('drop',function(e){add(e.dataTransfer.files);});
+})();
 </script>
 </body>
 </html>
