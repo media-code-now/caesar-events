@@ -55,6 +55,22 @@ a{color:#04171A;text-decoration:none}a:hover{color:#3a4f52}
 .ce-thumb button:focus-visible{outline:2px solid #F9BE17}
 @media (max-width:860px){.ce-custom-grid{grid-template-columns:minmax(0,1fr) !important}.ce-custom-card{padding:32px 20px !important}.ce-two{grid-template-columns:minmax(0,1fr) !important}}
 </style>
+<style>
+.ce-slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity 1.2s ease,visibility 0s linear 1.2s}
+.ce-slide.is-active{opacity:1;visibility:visible;transition-delay:0s}
+.ce-slide img{transform:scale(1.06);transition:transform 7s ease-out}
+.ce-slide.is-active img{transform:scale(1)}
+.ce-hero-nav{position:absolute;top:50%;z-index:3;width:48px;height:48px;margin-top:-24px;padding:0;border:1px solid rgba(255,255,255,.55);border-radius:50%;background:rgba(4,23,26,.35);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background-color .25s,transform .25s}
+.ce-hero-nav:hover{background:rgba(4,23,26,.6)}
+.ce-hero-prev{left:20px}.ce-hero-next{right:20px}
+.ce-hero-dots{position:absolute;left:0;right:0;bottom:22px;z-index:3;display:flex;justify-content:center;gap:4px}
+.ce-hero-dots button{width:26px;height:26px;padding:0;border:0;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.ce-hero-dots button::after{content:"";display:block;width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,.55);transition:width .35s ease,background-color .35s ease}
+.ce-hero-dots button[aria-current="true"]::after{width:26px;background:#E4D5BC}
+.ce-hero-nav:focus-visible,.ce-hero-dots button:focus-visible{outline:2px solid #F9BE17;outline-offset:2px}
+@media (max-width:860px){.ce-hero-nav{display:none}.ce-hero-dots{bottom:16px}}
+@media (prefers-reduced-motion:reduce){.ce-slide,.ce-slide img{transition:none}.ce-slide img{transform:none}}
+</style>
 <!-- @include sticky-nav -->
 <!-- STICKY NAV + MOBILE MENU -->
 <style>
@@ -136,8 +152,17 @@ window.matchMedia('(min-width:861px)').addEventListener('change',function(e){if(
 
 <!-- HERO -->
 <section class="ce-hero" style="position: relative; margin: 16px; min-height: 760px; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column; background: #04171A">
-<img src="https://lasvegas.caesareventsusa.com/wp-content/uploads/2026/03/3-2.jpg" alt="Branded bar installation with a glowing red star at a Las Vegas event by Caesar Events" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+<div class="ce-slides" role="group" aria-roledescription="carousel" aria-label="Featured events" data-hero-slider style="position: absolute; inset: 0">
+<div class="ce-slide is-active" role="group" aria-roledescription="slide" aria-label="1 of 5"><img src="https://lasvegas.caesareventsusa.com/wp-content/uploads/2026/03/3-2.jpg" alt="Branded bar installation with a glowing red star at a Las Vegas event by Caesar Events" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="ce-slide" role="group" aria-roledescription="slide" aria-label="2 of 5"><img src="images/hero/poolside-lounge.jpg" alt="Poolside lounge with cream sofas and amber side tables styled by Caesar Events" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="ce-slide" role="group" aria-roledescription="slide" aria-label="3 of 5"><img src="images/hero/blue-tile-lounge.jpg" alt="Lounge and cane-back bar chairs in front of a blue-and-white tiled arcade" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="ce-slide" role="group" aria-roledescription="slide" aria-label="4 of 5"><img src="images/hero/stone-cellar-lounge.jpg" alt="Rustic stone venue set with lounge seating, wooden tables and greenery" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+<div class="ce-slide" role="group" aria-roledescription="slide" aria-label="5 of 5"><img src="images/hero/candlelit-banquet.jpg" alt="Candlelit banquet tables under a canopy of hanging greenery and lanterns" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
+</div>
 <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(4,23,26,.72) 0%, rgba(4,23,26,.28) 38%, rgba(4,23,26,.55) 72%, rgba(4,23,26,.92) 100%)"></div>
+<button type="button" class="ce-hero-nav ce-hero-prev" data-hero-prev aria-label="Previous slide"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"></path></svg></button>
+<button type="button" class="ce-hero-nav ce-hero-next" data-hero-next aria-label="Next slide"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></button>
+<div class="ce-hero-dots" data-hero-dots role="group" aria-label="Choose slide"></div>
 
 <header class="ce-head" style="position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 24px; padding: 22px 32px">
 <!-- @include nav-left -->
@@ -171,6 +196,36 @@ window.matchMedia('(min-width:861px)').addEventListener('change',function(e){if(
 </div>
 </div>
 </section>
+<script>
+(function(){
+  var root=document.querySelector('[data-hero-slider]'); if(!root) return;
+  var slides=[].slice.call(root.querySelectorAll('.ce-slide')), hero=root.closest('.ce-hero'),
+      dotsBox=hero.querySelector('[data-hero-dots]'), i=0, timer=null, DELAY=2750,
+      dots=[];
+  slides.forEach(function(sl,n){
+    var b=document.createElement('button'); b.type='button'; b.setAttribute('aria-label','Go to slide '+(n+1));
+    b.addEventListener('click',function(){go(n); restart();}); dotsBox.appendChild(b); dots.push(b);
+  });
+  function go(n){
+    i=(n+slides.length)%slides.length;
+    slides.forEach(function(sl,k){sl.classList.toggle('is-active',k===i); sl.setAttribute('aria-hidden',k===i?'false':'true');});
+    dots.forEach(function(d,k){if(k===i) d.setAttribute('aria-current','true'); else d.removeAttribute('aria-current');});
+  }
+  function stop(){clearInterval(timer); timer=null;}
+  function start(){if(timer||document.hidden) return; timer=setInterval(function(){go(i+1);},DELAY);}
+  function restart(){stop(); start();}
+  hero.querySelector('[data-hero-prev]').addEventListener('click',function(){go(i-1); restart();});
+  hero.querySelector('[data-hero-next]').addEventListener('click',function(){go(i+1); restart();});
+  document.addEventListener('visibilitychange',function(){document.hidden?stop():start();});
+  var x0=null;
+  hero.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
+  hero.addEventListener('touchend',function(e){
+    if(x0===null) return; var dx=e.changedTouches[0].clientX-x0; x0=null;
+    if(Math.abs(dx)>45){go(i+(dx<0?1:-1)); restart();}
+  },{passive:true});
+  go(0); start();
+})();
+</script>
 
 <!-- VALUE STRIP -->
 <section class="ce-sec" style="padding: 96px 32px 48px">
